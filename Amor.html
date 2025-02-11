@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Quieres ser mi san valentin??</title>
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f2acac;
+            font-family: 'Mochiy Pop P One', sans-serif;
+            flex-direction: column;
+        }
+
+        .carousel {
+            position: absolute;
+            top: -220px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 300px;
+            height: 200px;
+            overflow: hidden;
+            border-radius: 20px;
+            margin: auto;
+            border: 15px solid transparent;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><text x="10" y="50" font-size="40" fill="red">❤❤❤</text></svg>');
+            background-repeat: round;
+            display: none;
+        }
+
+        .carousel img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .carousel img.active {
+            opacity: 1;
+        }
+
+        .valentines-day-card {
+            position: relative;
+            margin-top: 150px;
+        }
+
+        input#open {
+            display: none;
+        }
+
+        .open {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            cursor: pointer;
+            z-index: 5;
+        }
+
+        #open:checked ~ .carousel {
+            display: block;
+        }
+
+        #open:checked ~ .card-front {
+            transform: rotateY(-155deg);
+        }
+
+        @media (max-width: 480px) {
+            .valentines-day-card {
+                width: 90%;
+                height: auto;
+            }
+
+            .card-front, .card-inside {
+                width: 100%;
+                height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="valentines-day-card">
+        <input id="open" type="checkbox">
+        <label class="open" for="open"></label>
+        <div class="carousel">
+            <img src="/img/img1.jpg" class="active">
+            <img src="/img/img2.jpg">
+            <img src="/img/mi vida.jpg">
+            <img src="/img/img 2.jpg">
+        </div>
+        <div class="card-front">
+            <div class="note">Click para ser Feliz te Atreves?</div>
+        </div>
+        
+        <div class="card-inside">
+            <div class="text-one"></div>
+            <div class="heart"></div>
+            <div class="smile"></div>
+            <div class="eyes"></div>
+        </div>
+    </div>
+
+    <script>
+        const images = document.querySelectorAll('.carousel img');
+        let index = 0;
+        
+        setInterval(() => {
+            images[index].classList.remove('active');
+            index = (index + 1) % images.length;
+            images[index].classList.add('active');
+        }, 2000);
+    </script>
+</body>
+</html>
